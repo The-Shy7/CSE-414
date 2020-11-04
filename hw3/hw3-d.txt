@@ -1,0 +1,13 @@
+I actually had a very good experience using Azure. It's much more reliable than sqlite.
+It automatically shows query results in an organized manner rather than manually setting 
+the presentation of the results as in sqlite. However, I disliked the fact that I couldn't
+export the results in an organized table format and I was forced to export them as csv files. 
+Also, I disliked how my queries were not saved locally within the database, so I could easily
+access them again and I was forced to save my queries on my desktop and copy and paste the code
+into Azure to test it again. Other than these small inconveniences, it was a good experience. 
+Since we need to deal with very large amounts of data, it is very inefficient to work and manage
+it locally on our computers, so utilizing clouds service DBMSs such as Azure provides us the means
+through which we can work with big data. We can't store this much data on our computers, so cloud
+services for data storage is a huge necessity. Overall, I believe that the idea of offering a DBMS 
+as a service in a public cloud is necessary tool for storing large amounts of data and building
+interactions between the clients and server. 
