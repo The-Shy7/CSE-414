@@ -1,0 +1,33 @@
+Homework 4 Part 3
+
+A) 
+Functional Dependencies: D > B, CE > A
+Let’s take the set {C,E}
+{C,E}+ = {C,E,A}
+{C,E}+ != {C,E} and {C,E}+ != {A,B,C,D,E}
+So R(A,B,C,D,E) can be decomposed into R1(C,E,A) and R2(C,E,B,D)
+Let’s take the set {D} in R2(C,E,B,D)
+{D}+ = {D,B}
+{D}+ != {D} and {D}+ != {C,E,B,D}
+So R2(C,E,B,D) can be decomposed into R21(D,B) and R2(D,C,E)
+We now have R(A,B,C,D,E) decomposed into R1(C,E,A), R21(D,B) and R2(D,C,E)
+We can’t find any X such that X!= X+ and X != [all attributes], so this is in BCNF
+
+B)
+Functional Dependencies: A > E, BC > A, DE > B
+Let’s take the set {B,C}
+{B,C}+ = {B,C,A,E}
+{B,C}+ != {B,C} and {B,C}+ != {A,B,C,D,E}
+So S(A,B,C,D,E) can be decomposed into S1(B,C,A,E) and S2(B,C,D)
+Let’s take the set {A} in S1(B,C,A,E)
+{A}+ = {A,E}
+{A}+ != {A} and {A}+ != {B,C,A,E}
+So S1(B,C,A,E) can be decomposed into S11(A,E) and S12(A,B,C)
+We now have S(A,B,C,D,E) decomposed into S11(A,E), S12(A,B,C) and S2(B,C,D)
+We can’t find any X such that X!= X+ and X != [all attributes], so this is in BCNF
+
+C) A > A, B > B, C > C, D > D (trivial dependencies)
+
+D) A > B, B > C, C > D, D > A
+
+E) B > C, C > B, A > BCD, D > ABC
