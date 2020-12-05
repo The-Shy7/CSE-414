@@ -1,0 +1,24 @@
+-- Question 12
+SELECT DISTINCT c1.name as first_country, c2.name as second_country, mountains, seas
+	FROM geoindex.country c1, geoindex.country c2
+	     LET mountains = (SELECT DISTINCT m2.name as mountain
+							FROM geoindex.mountain m2, split(m2.`-country`, " ") M2_1, split(m2.`-country`, " ") M2_2
+							WHERE  M2_1 = c1.`-car_code` and M2_2 = c2.`-car_code`),
+	     seas = (SELECT DISTINCT s2.name as sea
+					FROM geoindex.sea s2, split(s2.`-country`, " ") S2_1, split(s2.`-country`, " ") S2_2
+					WHERE  S2_1 = c1.`-car_code` and S2_2 = c2.`-car_code`)
+	WHERE ARRAY_COUNT(mountains) >= 1
+		AND ARRAY_COUNT(seas) >= 1
+		AND c1.`-car_code` < c2.`-car_code`;
+
+-- Output:
+
+/*
+{ "mountains": [ { "mountain": "Llullaillaco" }, { "mountain": "Ojos del Salado" } ], "seas": [ { "sea": "Atlantic Ocean" } ], "first_country": "Argentina", "second_country": "Chile" }
+{ "mountains": [ { "mountain": "Mont Blanc" } ], "seas": [ { "sea": "Mediterranean Sea" } ], "first_country": "France", "second_country": "Italy" }
+{ "mountains": [ { "mountain": "Kasbek" } ], "seas": [ { "sea": "Black Sea" } ], "first_country": "Georgia", "second_country": "Russia" }
+{ "mountains": [ { "mountain": "Mt Bona" }, { "mountain": "Mt Fairweather" }, { "mountain": "Mt St.Elias" } ], "seas": [ { "sea": "Arctic Ocean" }, { "sea": "Atlantic Ocean" }, { "sea": "Pacific Ocean" } ], "first_country": "Canada", "second_country": "United States" }
+{ "mountains": [ { "mountain": "Changbai Shan" } ], "seas": [ { "sea": "Yellow Sea" } ], "first_country": "North Korea", "second_country": "China" }
+{ "mountains": [ { "mountain": "Sulitjelma" } ], "seas": [ { "sea": "Skagerrak" } ], "first_country": "Norway", "second_country": "Sweden" }
+{ "mountains": [ { "mountain": "Vignemale" } ], "seas": [ { "sea": "Atlantic Ocean" }, { "sea": "Mediterranean Sea" } ], "first_country": "Spain", "second_country": "France" }
+*/
